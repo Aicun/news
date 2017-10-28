@@ -1,8 +1,8 @@
-package lac.com.news;
+package lac.com.news.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -10,8 +10,12 @@ import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
+import lac.com.news.R;
+import lac.com.news.utils.CacheUtils;
+
 public class SplashActivity extends AppCompatActivity {
 
+    public static final String MAIN_VISITED = "main_visited";
     private RelativeLayout rl_splash;
 
     @Override
@@ -52,7 +56,14 @@ public class SplashActivity extends AppCompatActivity {
 
         @Override
         public void onAnimationEnd(Animation animation) {
+            //if MainActivity was visited, then visit MainActivity, otherwise visit Indicator
+            boolean isMainVisitted = CacheUtils.getBoolean(SplashActivity.this, MAIN_VISITED);
+            if(isMainVisitted) {
 
+            }else {
+                Intent intent = new Intent(SplashActivity.this,GuideActivity.class);
+                startActivity(intent);
+            }
         }
 
         @Override
