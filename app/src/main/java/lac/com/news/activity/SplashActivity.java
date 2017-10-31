@@ -59,7 +59,8 @@ public class SplashActivity extends AppCompatActivity {
             //if MainActivity was visited, then visit MainActivity, otherwise visit Indicator
             boolean isMainVisitted = CacheUtils.getBoolean(SplashActivity.this, MAIN_VISITED);
             if(isMainVisitted) {
-
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
             }else {
                 Intent intent = new Intent(SplashActivity.this,GuideActivity.class);
                 startActivity(intent);

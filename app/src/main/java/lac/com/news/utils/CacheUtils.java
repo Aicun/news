@@ -12,4 +12,9 @@ public class CacheUtils {
         SharedPreferences sf = context.getSharedPreferences("com.lac.news", context.MODE_PRIVATE);
         return sf.getBoolean(key, false);
     }
+
+    public static void putBoolean(Context context, String key, boolean value) {
+        SharedPreferences sf = context.getSharedPreferences("com.lac.news", context.MODE_PRIVATE);
+        sf.edit().putBoolean(key,value).commit();
+    }
 }
