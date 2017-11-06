@@ -1,5 +1,6 @@
 package lac.com.news.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -20,7 +21,7 @@ import lac.com.news.R;
 import lac.com.news.utils.CacheUtils;
 import lac.com.news.utils.DensityUtil;
 
-public class GuideActivity extends AppCompatActivity {
+public class GuideActivity extends Activity {
 
     private ViewPager viewPager;
     private Button start;

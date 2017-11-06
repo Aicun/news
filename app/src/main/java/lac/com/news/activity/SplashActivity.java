@@ -1,5 +1,6 @@
 package lac.com.news.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.RelativeLayout;
 import lac.com.news.R;
 import lac.com.news.utils.CacheUtils;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends Activity {
 
     public static final String MAIN_VISITED = "main_visited";
     private RelativeLayout rl_splash;
