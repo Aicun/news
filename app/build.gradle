@@ -30,4 +30,5 @@ dependencies {
     compile project(':SlidingMenuLibrary')
     implementation project(':xutils')
     //compile 'org.xutils:xutils:3.5.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
 }

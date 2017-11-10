@@ -75,6 +75,10 @@ public class MainContentFragment extends BaseFragment {
         activity.getSlidingMenu().setTouchModeAbove(touchmodeNone);
     }
 
+    public NewsCenterPage getNewsCenterPage() {
+        return (NewsCenterPage) pagesList.get(1);
+    }
+
     private class ContentFragmentAdapter extends PagerAdapter {
 
         @Override

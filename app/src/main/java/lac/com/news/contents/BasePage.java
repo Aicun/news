@@ -38,6 +38,14 @@ public class BasePage {
         ibMenu = (ImageButton) view.findViewById(R.id.ib_menu);
         frameLayout = (FrameLayout) view.findViewById(R.id.fl_content);
 
+        ibMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) context;
+                mainActivity.getSlidingMenu().toggle();
+            }
+        });
+
         return view;
     }
 
