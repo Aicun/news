@@ -24,6 +24,7 @@ import lac.com.news.contents.HomePage;
 import lac.com.news.contents.NewsCenterPage;
 import lac.com.news.contents.ServicePage;
 import lac.com.news.contents.SettingsPage;
+import lac.com.news.view.NoScrollViewPager;
 
 /**
  * Created by Aicun on 11/1/2017.
@@ -32,7 +33,8 @@ import lac.com.news.contents.SettingsPage;
 public class MainContentFragment extends BaseFragment {
 
     @ViewInject(R.id.main_viewpager)
-    private ViewPager viewPager;
+    //private ViewPager viewPager;
+    private NoScrollViewPager viewPager;
     @ViewInject(R.id.rg_content)
     private RadioGroup radioGroup;
 

@@ -2,11 +2,12 @@ package lac.com.news.contents;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.SystemClock;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -14,7 +15,6 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +26,7 @@ import lac.com.news.news.NewsContentBase;
 import lac.com.news.news.NewsDetail;
 import lac.com.news.news.PicsDetail;
 import lac.com.news.news.TopicDetail;
+import lac.com.news.utils.CacheUtils;
 import lac.com.news.utils.Constant;
 
 /**
@@ -36,7 +37,7 @@ public class NewsCenterPage extends BasePage {
 
     private ArrayList<NewsContentBase> contentPages;
     List<News.DataBean> data;
-
+    private long startTime;
 
     public NewsCenterPage(Context context) {
         super(context);
@@ -50,12 +51,13 @@ public class NewsCenterPage extends BasePage {
 
         titleView.setText("News Center Page");
 
-        TextView tv = new TextView(context);
-        tv.setText("News Center Content");
-        tv.setTextSize(25);
-        tv.setTextColor(Color.RED);
-        tv.setGravity(Gravity.CENTER);
-        frameLayout.addView(tv);
+        String saveJson = CacheUtils.getString(context,Constant.NEWS_CENTER_URL);//""
+
+        if(!TextUtils.isEmpty(saveJson)){
+            //processData(saveJson);
+        }
+
+        startTime = SystemClock.uptimeMillis();
 
         loadNewsDataFromServer();
     }
@@ -79,6 +81,8 @@ public class NewsCenterPage extends BasePage {
             @Override
             public void onSuccess(String result) {
                 Log.i("NewsCenterPage","News Datga Loaded");
+
+                CacheUtils.putString(context,Constant.NEWS_CENTER_URL,result);
                 processData(result);
             }
 
