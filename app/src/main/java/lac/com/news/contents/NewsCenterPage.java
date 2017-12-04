@@ -28,6 +28,7 @@ import lac.com.news.news.PicsDetail;
 import lac.com.news.news.TopicDetail;
 import lac.com.news.utils.CacheUtils;
 import lac.com.news.utils.Constant;
+import lac.com.news.utils.GsonParseUtil;
 
 /**
  * Created by Aicun on 11/5/2017.
@@ -104,7 +105,7 @@ public class NewsCenterPage extends BasePage {
     }
 
     private void processData(String result) {
-        News news = parseJson(result);
+        News news = GsonParseUtil.convertFromJson(result, News.class);
 
         MainActivity activity = (MainActivity) context;
         LeftMenuFragment leftMenuFragment = activity.getLeftMenuFragment();
@@ -120,10 +121,5 @@ public class NewsCenterPage extends BasePage {
         contentPages.add(new InteractDetail(context,data.get(3)));
 
         leftMenuFragment.setData(data);
-    }
-
-    private News parseJson(String result) {
-        Gson gson = new Gson();
-        return gson.fromJson(result, News.class);
     }
 }

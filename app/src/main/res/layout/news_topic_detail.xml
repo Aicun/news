@@ -4,38 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="180dp">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/news_topic_view_pager"
-            android:layout_width="wrap_content"
-            android:layout_height="180dp"/>
-
-        <RelativeLayout
-            android:background="@android:color/darker_gray"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/news_topic_title"
-                android:text="Waterloo houese price is going up dramatically"
-                android:textColor="@android:color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"/>
-
-            <LinearLayout
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></LinearLayout>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/news_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true" />
 
 </LinearLayout>

@@ -20,6 +20,7 @@ import lac.com.news.R;
 import lac.com.news.activity.MainActivity;
 import lac.com.news.beans.News;
 import lac.com.news.news.newstabdetail.NewsSubTopicDetail;
+import lac.com.news.news.newstabdetail.TabDetailPager;
 
 /**
  * Created by Aicun on 11/7/2017.
@@ -38,7 +39,8 @@ public class NewsDetail extends NewsContentBase {
 
     private List<News.DataBean.ChildrenBean> children;
 
-    private List<NewsSubTopicDetail> topics;
+    private List<NewsContentBase> topics;
+    //private List<TabDetailPager> topics;
 
     public NewsDetail(Context context, News.DataBean dataBean) {
         super(context);
@@ -65,7 +67,8 @@ public class NewsDetail extends NewsContentBase {
 
         topics = new ArrayList<>();
         for(News.DataBean.ChildrenBean topic: children) {
-            NewsSubTopicDetail newsSubTopicDetail = new NewsSubTopicDetail(context, topic);
+            //NewsContentBase newsSubTopicDetail = new NewsSubTopicDetail(context, topic);
+            NewsContentBase newsSubTopicDetail = new TabDetailPager(context,topic);
             topics.add(newsSubTopicDetail);
         }
 
@@ -95,7 +98,7 @@ public class NewsDetail extends NewsContentBase {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            NewsSubTopicDetail topic = topics.get(position);
+            NewsContentBase topic = topics.get(position);
             View rootView = topic.rootView;
             topic.initData();
             container.addView(rootView);
@@ -125,9 +128,9 @@ public class NewsDetail extends NewsContentBase {
         @Override
         public void onPageSelected(int position) {
             if(position == 0) {
-                enableSlidingMenu(SlidingMenu.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                enableSlidingMenu(SlidingMenu.TOUCHMODE_FULLSCREEN);
             }else {
-                enableSlidingMenu(SlidingMenu.LAYER_TYPE_NONE);
+                enableSlidingMenu(SlidingMenu.TOUCHMODE_NONE);
             }
         }
 
