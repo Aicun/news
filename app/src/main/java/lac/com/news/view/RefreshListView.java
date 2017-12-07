@@ -26,7 +26,6 @@ import lac.com.news.enmu.NewsRefreshStatus;
 public class RefreshListView extends ListView {
 
     private LinearLayout headerLinearLayout;
-    private LinearLayout refresh;
     private ImageView refreshArrow;
     private TextView refreshStatus;
     private TextView refreshTime;
@@ -42,6 +41,10 @@ public class RefreshListView extends ListView {
     private float startY;
     private int refreshViewHeight;
     private NewsRefreshStatus newsRefreshStatus;
+
+    private int listViewPositionY = -1;
+
+    private View topView;
 
     public RefreshListView(Context context) {
         this(context, null);
@@ -68,6 +71,10 @@ public class RefreshListView extends ListView {
                 startY = ev.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
+
+                if(!isTopNewsDisplayed())
+                    break;
+
                 if(startY == -1) {
                     startY = ev.getY();
                 }
@@ -122,10 +129,16 @@ public class RefreshListView extends ListView {
         this.onRefreshListener = onRefreshListener;
     }
 
+    public void addTopNewsView(View topView) {
+        if(topView != null) {
+            this.topView = topView;
+            headerLinearLayout.addView(topView);
+        }
+    }
+
     private void initHeaderView(Context context) {
         headerLinearLayout = (LinearLayout) View.inflate(context, R.layout.news_header_refresh,null);
 
-        refresh = (LinearLayout) headerLinearLayout.findViewById(R.id.ll_refress);
         refreshArrow = (ImageView) headerLinearLayout.findViewById(R.id.iv_refresh_arrow_down);
         refreshingProgressBar = (ProgressBar) headerLinearLayout.findViewById(R.id.pb_refresh_progress);
         refreshStatus = (TextView) headerLinearLayout.findViewById(R.id.tv_refresh);
@@ -209,5 +222,26 @@ public class RefreshListView extends ListView {
     private String getSystemTime() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(new Date());
+    }
+
+    private boolean isTopNewsDisplayed() {
+
+        if(topView != null) {
+
+            int[] positions = new int[2];
+            getLocationOnScreen(positions);
+
+            if(listViewPositionY == -1) {
+                listViewPositionY = positions[1];
+            }
+
+            topView.getLocationOnScreen(positions);
+
+            int topViewY = positions[1];
+
+            return listViewPositionY <= topViewY;
+        }
+
+        return false;
     }
 }

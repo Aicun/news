@@ -80,9 +80,9 @@ public class TabDetailPager extends NewsContentBase {
         tv_title = (TextView) topNewsView.findViewById(R.id.news_topic_title);
         ll_point_group = (LinearLayout) topNewsView.findViewById(R.id.news_topic_top_group);
 
-        listview.addHeaderView(topNewsView);
+        //listview.addHeaderView(topNewsView);
 
-        //listview.addTopNewsView(topNewsView);
+        listview.addTopNewsView(topNewsView);
 
         listview.SetOnRefreshListener(new RefreshListView.OnRefreshListener() {
             @Override
